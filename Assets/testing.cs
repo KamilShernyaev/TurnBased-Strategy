@@ -15,7 +15,9 @@ public class testing : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Space))
         {
-            unit.GetMoveAction().GetValidActionGridPositionList();
+            GridSystemVisual.Instance.HideAllGridPosition();
+            GridSystemVisual.Instance.ShowGridPositionList(
+            unit.GetMoveAction().GetValidActionGridPositionList());
         }
     }
 }

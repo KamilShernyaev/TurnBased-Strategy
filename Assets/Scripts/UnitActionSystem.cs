@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UnitActionSystem : MonoBehaviour
 {
-    public static UnitActionSystem instance {get; private set;}
+    public static UnitActionSystem Instance {get; private set;}
     public event EventHandler OnSelectedUnitChanged;
 
     [SerializeField] private Unit selectedUnit;
@@ -13,13 +13,13 @@ public class UnitActionSystem : MonoBehaviour
 
     private void Awake() 
     {
-        if(instance != null)
+        if(Instance != null)
         {
-            Debug.LogError("There's more than one UnitActionSystem!" + transform + "-" + instance);
+            Debug.LogError("There's more than one UnitActionSystem!" + transform + "-" + Instance);
             Destroy(gameObject);
             return;
         }
-        instance = this;
+        Instance = this;
     }
 
     private void Update() 
@@ -34,6 +34,11 @@ public class UnitActionSystem : MonoBehaviour
             {
                 selectedUnit.GetMoveAction().Move(mouseGridPosition);
             }
+        }
+
+        if(Input.GetMouseButtonDown(1))
+        {
+            selectedUnit.GetSpinAction().Spin();
         }
     }
     private bool TryHandleUnitSelection()
