@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class LevelGrid : MonoBehaviour
 {
-    public static LevelGrid instance {get; private set;}
+    public static LevelGrid Instance {get; private set;}
+    
     [SerializeField] private Transform GridDebugObjectPrafabs;
     private GridSystem gridSystem;
 
     private void Awake() 
     {
-        if(instance != null)
+        if(Instance != null)
         {
-            Debug.LogError("There's more than one LevelGrid!" + transform + "-" + instance);
+            Debug.LogError("There's more than one LevelGrid!" + transform + "-" + Instance);
             Destroy(gameObject);
             return;
         }
-        instance = this;
+        Instance = this;
 
         gridSystem = new GridSystem(10,10,2f);
-        gridSystem.CreateDebubObjects(GridDebugObjectPrafabs);
+        gridSystem.CreateDebugObjects(GridDebugObjectPrafabs);
     }
 
-    public void AddUnitGridPosition(GridPosition gridPosition, Unit unit)
+    public void AddUnitAtGridPosition(GridPosition gridPosition, Unit unit)
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
         gridObject.AddUnit(unit);
@@ -44,8 +45,18 @@ public class LevelGrid : MonoBehaviour
     {
         RemoveUnitAtGridPosition(fromGridPosition, unit);
 
-        AddUnitGridPosition(toGridPosition, unit);
+        AddUnitAtGridPosition(toGridPosition, unit);
     }
 
     public GridPosition GetGridPosition (Vector3 worldPosition) => gridSystem.GetGridPosition(worldPosition);
+
+    public Vector3 GetWorldPosition (GridPosition gridPosition) => gridSystem.GetWorldPosition(gridPosition);
+    
+    public bool IsValidGridPosition(GridPosition gridPosition) => gridSystem.IsValidGridPosition(gridPosition);
+
+    public bool HasAnyUnitOnGridPosition(GridPosition gridPosition)
+    {
+        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+        return gridObject.HasAnyUnit();
+    }
 }

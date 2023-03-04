@@ -40,7 +40,7 @@ public class GridSystem
         );
     }
     
-    public void CreateDebubObjects(Transform debugPrefab)
+    public void CreateDebugObjects(Transform debugPrefab)
     {
         for (int x = 0; x < widht; x++)
         {
@@ -58,5 +58,13 @@ public class GridSystem
     public GridObject GetGridObject(GridPosition gridPosition)
     {
         return gridObjectArray[gridPosition.x,gridPosition.z];
+    }
+
+    public bool IsValidGridPosition(GridPosition gridPosition)
+    {
+        return  gridPosition.x >= 0 &&
+                gridPosition.z >= 0 &&
+                gridPosition.x < widht &&
+                gridPosition.z < height;
     }
 }

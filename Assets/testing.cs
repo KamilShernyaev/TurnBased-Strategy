@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class testing : MonoBehaviour
 {
-
+    [SerializeField] private Unit unit;
 
     void Start()
     {
 
-        Debug.Log(new GridPosition(5,7));
     }
 
     void Update()
     {
-
+        if(Input.GetKey(KeyCode.Space))
+        {
+            unit.GetMoveAction().GetValidActionGridPositionList();
+        }
     }
 }
