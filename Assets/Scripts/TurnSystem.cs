@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TurnSystem : MonoBehaviour
@@ -7,7 +6,7 @@ public class TurnSystem : MonoBehaviour
     public static TurnSystem Instance {get; private set;}
     
     public event EventHandler OnTurnChanged;
-    private int turnNumber;
+    private int turnNumber = 1;
 
     private void Awake() 
     {
@@ -32,3 +31,4 @@ public class TurnSystem : MonoBehaviour
         return turnNumber;
     }
 }
+
