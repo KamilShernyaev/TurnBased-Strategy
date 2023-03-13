@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2257755441007423642}
   - component: {fileID: 8905739921318472426}
   - component: {fileID: 6327179244692379450}
+  - component: {fileID: 5834185739727223040}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   - {fileID: 6379599768449121917}
   - {fileID: 6798208227572221125}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7573152619525296815
 MonoBehaviour:
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9cf6c50cf6aa7418abcaad8f6eab92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnemy: 0
 --- !u!65 &2257755441007423642
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -96,6 +98,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa020229318e3a74c8a052a760110409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5834185739727223040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724498619091887381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71fde43bb0523d949b4b00e8c2879370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8857562876854773899
@@ -592,7 +606,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7d22fc6b9a431b043a917fb89a80bcfc, type: 2}
+      objectReference: {fileID: 2100000, guid: f685a57b9da560a448bb95374a652f90, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
