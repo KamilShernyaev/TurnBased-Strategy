@@ -11,11 +11,6 @@ public class EnemyAI : MonoBehaviour
         TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
     }
 
-    private void TurnSystem_OnTurnChanged(object sender, EventArgs e)
-    {
-        timer = 2f;
-    }
-
     private void Update() 
     {   
         if (TurnSystem.Instance.IsPlayerTurn())
@@ -28,5 +23,10 @@ public class EnemyAI : MonoBehaviour
         {
             TurnSystem.Instance.NextTurn();
         }
+    }
+
+    private void TurnSystem_OnTurnChanged(object sender, EventArgs e)
+    {
+        timer = 2f;
     }
 }
