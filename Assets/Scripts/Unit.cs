@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviour
+public class Unit : MonoBehaviour, IGetHealthSystem
 {   
     private const int ACTION_POINTS_MAX = 2;
 
@@ -20,7 +20,7 @@ public class Unit : MonoBehaviour
 
     private void Awake() 
     {
-        healthSystem = GetComponent<HealthSystem>();
+        healthSystem = new HealthSystem(100);
         moveAction = GetComponent<MoveAction>();
         spinAction = GetComponent<SpinAction>();
         baseActionArray = GetComponents<BaseAction>();
@@ -134,5 +134,10 @@ public class Unit : MonoBehaviour
         LevelGrid.Instance.RemoveUnitAtGridPosition(gridPosition, this);
 
         Destroy(gameObject);
+    }
+
+    public HealthSystem GetHealthSystem() 
+    {
+        return healthSystem;
     }
 }
