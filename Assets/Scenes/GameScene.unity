@@ -1222,7 +1222,7 @@ PrefabInstance:
     - target: {fileID: 172489423689377677, guid: b489778249a05f84db95c471ffbdb08f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 172489423689377677, guid: b489778249a05f84db95c471ffbdb08f,
         type: 3}
@@ -1232,7 +1232,7 @@ PrefabInstance:
     - target: {fileID: 172489423689377677, guid: b489778249a05f84db95c471ffbdb08f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 172489423689377677, guid: b489778249a05f84db95c471ffbdb08f,
         type: 3}
@@ -2471,6 +2471,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f459d60b4aad4e940877463a8cf903cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1816895873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1816895875}
+  - component: {fileID: 1816895874}
+  m_Layer: 0
+  m_Name: Pathfinding
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1816895874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816895873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b850002bd27fda04393049543f01f897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridDebugObjectPrefabs: {fileID: 8814814958615133476, guid: 149c587700077ce4f99763ff64f363ef,
+    type: 3}
+--- !u!4 &1816895875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816895873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1819187577
 GameObject:
   m_ObjectHideFlags: 0
@@ -3373,8 +3419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d72f4fe77a8284cb77cb2bb6c734bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GridDebugObjectPrafabs: {fileID: 8814814958615133476, guid: ff9e126684289f345902c191e1b12f44,
-    type: 3}
+  gridDebugObjectPrefabs: {fileID: 0}
 --- !u!4 &2120837783
 Transform:
   m_ObjectHideFlags: 0

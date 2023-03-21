@@ -15,8 +15,6 @@ public class Unit : MonoBehaviour, IGetHealthSystem
 
     private GridPosition gridPosition;
     private HealthSystem healthSystem;
-    private MoveAction moveAction;
-    private SpinAction spinAction;
     private BaseAction[] baseActionArray;
     private int actionPoints = ACTION_POINTS_MAX;
 
@@ -24,8 +22,6 @@ public class Unit : MonoBehaviour, IGetHealthSystem
     private void Awake() 
     {
         healthSystem = new HealthSystem(100);
-        moveAction = GetComponent<MoveAction>();
-        spinAction = GetComponent<SpinAction>();
         baseActionArray = GetComponents<BaseAction>();
     }
 
@@ -53,14 +49,17 @@ public class Unit : MonoBehaviour, IGetHealthSystem
         OnAnyUnitSpawned?.Invoke(this,EventArgs.Empty);
     }
 
-    public MoveAction GetMoveAction()
+    public T GetAction<T>() where T : BaseAction
     {
-        return moveAction;
-    }
+        foreach (BaseAction baseAction in baseActionArray)
+        {
+            if (baseAction is T)
+            {
+                return (T)baseAction;
+            }
+        }
 
-    public SpinAction GetSpinAction()
-    {
-        return spinAction;
+        return null;   
     }
 
     public GridPosition GetGridPosition()
@@ -148,6 +147,11 @@ public class Unit : MonoBehaviour, IGetHealthSystem
     public HealthSystem GetHealthSystem() 
     {
         return healthSystem;
+    }
+
+    public float GetHealthNormalized()
+    {
+        return healthSystem.GetHealthNormalized();
     }
 
     public bool IsDead()

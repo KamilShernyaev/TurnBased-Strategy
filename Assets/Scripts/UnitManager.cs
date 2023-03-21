@@ -35,7 +35,6 @@ public class UnitManager : MonoBehaviour
     private void Unit_OnAnyUnitSpawned(object sender, EventArgs e)
     {
         Unit unit = sender as Unit;
-        Debug.Log(unit + " spawned");
         unitList.Add(unit);
 
         if (unit.IsEnemy())
@@ -51,7 +50,6 @@ public class UnitManager : MonoBehaviour
     private void Unit_OnAnyUnitDead(object sender, EventArgs e)
     {
         Unit unit = sender as Unit;
-        Debug.Log(unit + " died");
         unitList.Remove(unit);
 
         if (unit.IsEnemy())
