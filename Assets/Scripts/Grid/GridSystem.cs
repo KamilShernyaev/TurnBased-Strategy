@@ -74,7 +74,7 @@ public class GridSystem<TGridObject>
         return height;
     }
 
-    public int GetWidht()
+    public int GetWidth()
     {
         return widht;
     }
