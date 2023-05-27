@@ -11,13 +11,8 @@ public class MoveAction : BaseAction
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float rotateSpeed = 10f;
 
-    private Vector3 targetPosition;
-
-    protected override void Awake() 
-    {
-        base.Awake();
-        targetPosition = transform.position;
-    }
+    private List<Vector3> positionList;
+    private int currentPositionIndex;
 
     private void Update() 
     {
@@ -26,7 +21,10 @@ public class MoveAction : BaseAction
             return;
         }
 
+        Vector3 targetPosition = positionList[currentPositionIndex];
         Vector3 moveDirection = (targetPosition - transform.position).normalized;
+
+        transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
 
         float stoppingDistance = .1f;
 
@@ -36,15 +34,26 @@ public class MoveAction : BaseAction
         }
         else
         {
-            OnStopMoving?.Invoke(this, EventArgs.Empty);
-            ActionComplete();
-        }
+            currentPositionIndex++;
+            if(currentPositionIndex >= positionList.Count)
+            {
+                OnStopMoving?.Invoke(this, EventArgs.Empty);
 
-        transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
+                ActionComplete();
+            }
+        }
     }
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        this.targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
+        List<GridPosition> pathGridPositionList = Pathfinding.Instance.FindPath(unit.GetGridPosition(), gridPosition, out int pathLenght);
+        
+        currentPositionIndex= 0;
+        positionList = new List<Vector3>();
+        
+        foreach (GridPosition pathGridPosition in pathGridPositionList)
+        {
+            positionList.Add(LevelGrid.Instance.GetWorldPosition(pathGridPosition));
+        }
 
         OnStartMoving?.Invoke(this, EventArgs.Empty);
 
@@ -74,6 +83,20 @@ public class MoveAction : BaseAction
                     continue;
                 }
                 if(LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition))
+                {
+                    continue;
+                }
+                if(!Pathfinding.Instance.IsWalkableGridPosition(testGridPosition))
+                {
+                    continue;
+                }
+                if(!Pathfinding.Instance.HasPath(unitGridPosition, testGridPosition))
+                {
+                    continue;
+                }
+
+                int pathFindingDistanceMultiplier = 10;
+                if(Pathfinding.Instance.GetPathLenght(unitGridPosition, testGridPosition) > maxMoveDistance * pathFindingDistanceMultiplier)
                 {
                     continue;
                 }

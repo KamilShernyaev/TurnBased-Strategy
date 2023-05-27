@@ -68,6 +68,13 @@ public class GridSystem<TGridObject>
                 gridPosition.x < widht &&
                 gridPosition.z < height;
     }
+    // public bool IsValidGridPosition(int x, int z)
+    // {
+    //     return  x >= 0 &&
+    //             z >= 0 &&
+    //             x < widht &&
+    //             z < height;
+    // }
 
     public int GetHeight()
     {
